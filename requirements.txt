@@ -1,5 +1,7 @@
-python-dotenv~=1.0.1
-fastapi~=0.115.4
+python-dotenv
+fastapi
 uvicorn
-requests~=2.32.3
-pydantic~=2.9.2
+aioredis
+requests
+pydantic
+Booktype
