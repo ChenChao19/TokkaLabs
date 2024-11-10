@@ -1,11 +1,11 @@
 import uvicorn
 from fastapi import FastAPI
 
-from client.TransactionFeeClient import TransactionFeeClient
+from service.TransactionFeeService import TransactionFeeClient
 import logging
 
-from client.models.Requests import TransactionFeeRequest
-from client.models.Response import TransactionFeeResponse
+from service.models.Requests import TransactionFeeRequest
+from service.models.Response import TransactionFeeResponse
 
 app = FastAPI()
 transactionFeeClient = TransactionFeeClient()

@@ -1,11 +1,9 @@
 import asyncio
-import time
 
-from client.models.Requests import TransactionFeeRequest
-from client.models.Response import TransactionsDTO, TransactionFeeResponse
+from service.models.Response import TransactionsDTO, TransactionFeeResponse
 
 
-class TransactionFeeClient:
+class TransactionFeeService:
     def __init__(self) -> None:
         self.retry_times = 3
 
