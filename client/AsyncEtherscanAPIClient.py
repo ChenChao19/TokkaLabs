@@ -12,7 +12,6 @@ class EtherscanClient:
     async def get_token_transfer_event_by_address(
             self,
             address: str,
-            contract_address: str,
             page: int = 1,
             offset: int = 100,
             start_block: int = 0,
@@ -23,7 +22,6 @@ class EtherscanClient:
             "module": "account",
             "action": "tokentx",
             "address": address,
-            "contractaddress": contract_address,
             "page": page,
             "offset": offset,
             "startblock": start_block,

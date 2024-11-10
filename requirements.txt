@@ -1,7 +1,7 @@
 python-dotenv~=1.0.1
 fastapi~=0.115.4
 uvicorn~=0.32.0
-aioredis
+aioredis~=2.0.1
 requests~=2.32.3
 pydantic~=2.9.2
 Booktype
@@ -9,3 +9,5 @@ websocket-client~=1.8.0
 httpx~=0.27.2
 websocket~=0.2.1
 websockets~=14.0
+web3~=7.5.0
+sqlparse~=0.5.1
