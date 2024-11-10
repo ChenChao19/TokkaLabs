@@ -33,7 +33,7 @@ class AbstractBinanceWebSocketClient(ABC):
         """Receive and handle messages from the WebSocket."""
         async for message in websocket:
             data = json.loads(message)
-            self.process_message(data)
+            await self.process_message(data)
 
     async def _reconnect(self):
         """Handles reconnection with exponential backoff."""
@@ -43,6 +43,6 @@ class AbstractBinanceWebSocketClient(ABC):
         await asyncio.sleep(delay)
 
     @abstractmethod
-    def process_message(self, data):
+    async def process_message(self, data):
         """Abstract method to process incoming WebSocket messages."""
         pass

@@ -1,12 +1,15 @@
 import asyncio
+import logging
+import os
+import signal
 
-from client.AsyncEtherscanAPIClient import EtherscanClient
 from dotenv import load_dotenv
 
-from service.dataLoader.BaseDataLoader import BaseLoader
-from util.consts import ETHERSCAN_API_KEY, UNISWAP_V3_ETH_USDC_POOL_ADDR, REDIS_NAME_TRANSACTION
-import os
+from client.AsyncEtherscanAPIClient import EtherscanClient
 from client.AsyncWeb3Client import EvmClient
+from service.dataLoader.BaseDataLoader import BaseLoader
+from util.consts import ETHERSCAN_API_KEY, REDIS_NAME_TRANSACTION, UNISWAP_V3_ETH_USDC_POOL_ADDR
+
 
 class EtherscanLoader(BaseLoader):
     def __init__(self):
@@ -16,6 +19,7 @@ class EtherscanLoader(BaseLoader):
         self.etherscan_client = EtherscanClient(API_KEY)
         self.evm_client = EvmClient()
         self.last_processed_block = None
+        self.stop_event = asyncio.Event()
 
     async def get_latest_block_number(self) -> int:
         latest_block = await self.evm_client.get_latest_block_number()
@@ -35,7 +39,7 @@ class EtherscanLoader(BaseLoader):
         gas_price = int(txn["gasPrice"])
         timestamp = int(txn["timeStamp"])
         cost_in_wei = gas_used * gas_price
-        gas_in_eth = self.evm_client.get_eth_from_wei(cost_in_wei)
+        gas_in_eth = await self.evm_client.get_eth_from_wei(cost_in_wei)
         processed = {
             "timestamp": timestamp,
             "gas": gas_in_eth
@@ -58,3 +62,15 @@ class EtherscanLoader(BaseLoader):
         transactions = resp.get("result", [])
         await asyncio.gather(*[self.process_transaction(txn) for txn in transactions])
         self.last_processed_block = end
+
+    async def run_forever(self):
+        """Runs the loader indefinitely, processing new transactions as blocks update."""
+        logging.info("Get transactions and write redis")
+        while not self.stop_event.is_set():
+            await self.get_transactions_and_write_redis()
+            await asyncio.sleep(10)  # Adjust sleep time as needed for your use case
+
+    def shutdown(self):
+        """Signals the loader to stop processing."""
+        self.stop_event.set()
+        logging.info("Shutdown signal received, stopping EtherscanLoader...")

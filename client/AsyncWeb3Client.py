@@ -12,8 +12,9 @@ class EvmClient:
 
     def __init__(self):
         dotenv.load_dotenv()
-        url = os.getenv("RPC_URL")
+        url = os.getenv("INFURA_RPC_URL")
         self.w3 = AsyncWeb3(AsyncHTTPProvider(url))
+        print(url)
 
     async def get_latest_block_number(self) -> int:
         latest_block = await self.w3.eth.get_block("latest")

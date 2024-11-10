@@ -16,3 +16,10 @@ services:
     ports:
       - "8000:8000"
     env_file: .env
+
+  main:
+    build: .
+    depends_on:
+      - redis
+    env_file: .env
+    command: [ "python3", "job.py" ]

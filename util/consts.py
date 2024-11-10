@@ -4,6 +4,7 @@ import os
 REDIS_HOST = os.getenv("REDIS_HOST", "redis")
 REDIS_PORT = os.getenv("REDIS_PORT", 6379)
 REDIS_NAME_TRANSACTION = "transactions"
+REDIS_BINANCE_SPOT_DATA = "binance_spot_data"
 
 BINANCE_ETH_USDT_TICKER_SYMBOL = "ethusdt"
 ETHERSCAN_API_KEY = "ETHERSCAN_API_KEY"
