@@ -1,13 +1,12 @@
 import asyncio
-import json
 import logging
 
-from client.AsyncBinanceAPIClient import BinanceClient
-from client.AsyncRedisClient import RedisClient
-from service.models.Response import TransactionsDTO, TransactionFeeResponse
-from util.consts import REDIS_NAME_TRANSACTION, REDIS_BINANCE_SPOT_DATA, REDIS_CHANNEL_TRANSACTION, \
+from tests import BinanceClient
+from tests import RedisClient
+from tests import TransactionsDTO, TransactionFeeResponse
+from tests import REDIS_NAME_TRANSACTION, REDIS_BINANCE_SPOT_DATA, REDIS_CHANNEL_TRANSACTION, \
     BINANCE_ETH_USDT_TICKER_SYMBOL_CAP
-from util.util import is_valid_txn_hash
+from tests import is_valid_txn_hash
 
 class TransactionFeeService:
     """

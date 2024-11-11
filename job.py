@@ -1,12 +1,12 @@
 import asyncio
 
-from service.TransactionProcessSubscriber import TransactionProcessSubscriber
-from service.dataLoader.binance.binance import BinanceLoader
-from service.dataLoader.etherscan.etherscan import EtherscanLoader
-from util.logger import setup_logger
+from tests import TransactionProcessSubscriber
+from tests import BinanceLoader
+from tests import EtherscanLoader
+from tests import setup_logger
 
 async def main():
-    setup_logger("main.log")
+    setup_logger("core.log")
     # Initialize both loaders
     binance_loader = BinanceLoader()
     etherscan_loader = EtherscanLoader()

@@ -11,3 +11,4 @@ websocket~=0.2.1
 websockets~=14.0
 web3~=7.5.0
 sqlparse~=0.5.1
+pytest~=8.3.3

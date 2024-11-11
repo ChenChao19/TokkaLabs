@@ -4,10 +4,10 @@ import os
 
 from dotenv import load_dotenv
 
-from client.AsyncEtherscanAPIClient import EtherscanClient
-from client.AsyncWeb3Client import EvmClient
-from service.dataLoader.BaseDataLoader import BaseLoader
-from util.consts import ETHERSCAN_API_KEY, REDIS_NAME_TRANSACTION, UNISWAP_V3_ETH_USDC_POOL_ADDR
+from tests import EtherscanClient
+from tests import EvmClient
+from tests import BaseLoader
+from tests import ETHERSCAN_API_KEY, REDIS_NAME_TRANSACTION, UNISWAP_V3_ETH_USDC_POOL_ADDR
 
 
 class EtherscanLoader(BaseLoader):
