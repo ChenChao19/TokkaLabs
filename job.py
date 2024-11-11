@@ -5,7 +5,6 @@ from service.dataLoader.binance.binance import BinanceLoader
 from service.dataLoader.etherscan.etherscan import EtherscanLoader
 from util.logger import setup_logger
 
-
 async def main():
     setup_logger("main.log")
     # Initialize both loaders

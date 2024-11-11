@@ -1,4 +1,5 @@
 import asyncio
+import json
 import logging
 from abc import ABC
 
@@ -30,8 +31,8 @@ class TransactionProcessSubscriber(ABC):
             if not msg:
                 await asyncio.sleep(1)
                 continue
-            txn_hash = msg
-            logging.info(f"Received message: {msg}")
+            txn_hash = json.loads(msg['data'].decode())
+            logging.info(f"Received message: {msg}, {txn_hash=}")
             await self.process_hash(txn_hash)
 
     async def process_hash(self, txn_hash: str):
@@ -46,7 +47,7 @@ class TransactionProcessSubscriber(ABC):
 
     async def process_valid_hash(self, txn_hash: str, txn_receipt: TxReceipt):
         gas_used = int(txn_receipt["gasUsed"])
-        gas_price = float(self.w3_client.w3.get_eth_from_wei(txn_receipt["effectiveGasPrice"]))
+        gas_price = float(await self.w3_client.get_eth_from_wei(txn_receipt["effectiveGasPrice"]))
         block = await self.w3_client.w3.eth.get_block(txn_receipt["blockNumber"])
         timestamp = block["timestamp"]
         gas_in_eth = gas_used * gas_price

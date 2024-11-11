@@ -13,9 +13,9 @@ class BinanceTickerClient(AbstractBinanceWebSocketClient):
 
     async def process_message(self, data):
         try:
-            logging.info(f"Processing data for {self.symbol.upper()}: {data}")
+            logging.debug(f"Processing data for {self.symbol.upper()}: {data}")
             await self.redis.hset_json(REDIS_BINANCE_SPOT_DATA, int(data['E']/1000), round(float(data['c']), 2))
-            logging.info(f"Stored price {round(float(data['c']), 2)} for event time {int(data['E']/1000)} in Redis.")
+            logging.debug(f"Stored price {round(float(data['c']), 2)} for event time {int(data['E']/1000)} in Redis.")
         except Exception as e:
             logging.error(f"Failed to store data in Redis: {e}")
 

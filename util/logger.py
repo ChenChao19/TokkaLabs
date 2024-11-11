@@ -1,16 +1,15 @@
 import os
 import logging
 
-# Invoke Set Up
 def setup_logger(log_file_name: str):
     log_file = f"{log_file_name}.log"
     if not os.path.isfile(log_file):
-        with open(log_file, "w") as file:
+        with open(log_file, "a") as file:
             file.write("")
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
     formatter = logging.Formatter(
-        "%(asctime)s.%(msecs)03d - %(levelname)s - %(message)s",
+        "%(asctime)s.%(msecs)03d - %(levelname)s - %(name)s - %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
     )
     file_handler = logging.FileHandler(log_file)

@@ -1,4 +1,5 @@
 import asyncio
+import json
 import logging
 
 from client.AsyncBinanceAPIClient import BinanceClient
@@ -25,7 +26,7 @@ class TransactionFeeService:
             return response
 
         transaction = await self.redis.hget_json(REDIS_NAME_TRANSACTION, txnHash)
-        if not transaction or transaction.get('timestamp'):
+        if not transaction or not transaction.get('timestamp'):
             response.error_msg = "Transaction not found, scheduled, try again later"
             await self.redis.publish_to_channel(REDIS_CHANNEL_TRANSACTION, txnHash)
             return response

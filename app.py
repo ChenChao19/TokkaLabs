@@ -1,5 +1,4 @@
 import uvicorn
-import asyncio
 from fastapi import FastAPI
 
 from service.TransactionFeeService import TransactionFeeService
@@ -11,6 +10,9 @@ from util.logger import setup_logger
 
 app = FastAPI()
 transactionFeeService = TransactionFeeService()
+logging.basicConfig(level=logging.INFO,
+                    format="%(asctime)s | %(levelname)-8s | "
+                           "%(module)s:%(funcName)s:%(lineno)d - %(message)s")
 
 @app.post("/transaction-fee/", response_model=TransactionFeeResponse)
 async def get_transaction_fee(transactionFeeRequest: TransactionFeeRequest):
@@ -19,4 +21,4 @@ async def get_transaction_fee(transactionFeeRequest: TransactionFeeRequest):
 
 if __name__ == "__main__":
     setup_logger("app.log")
-    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True,log_level='debug')
