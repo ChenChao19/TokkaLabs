@@ -1,6 +1,7 @@
 import json
 from aioredis import Redis
-from util.consts import REDIS_HOST, REDIS_PORT
+from util.consts import REDIS_HOST, REDIS_PORT, ONE_YEAR_IN_SECONDS
+
 
 class RedisClient(Redis):
     def __init__(self, host=REDIS_HOST, port=REDIS_PORT, **kwargs):
@@ -10,7 +11,8 @@ class RedisClient(Redis):
         return await self.publish(channel, json.dumps(msg))
 
     async def hset_json(self, name, key, value):
-        return await self.hset(name, key, json.dumps(value))
+        await self.hset(name, key, json.dumps(value))
+        return await self.expire(key, ONE_YEAR_IN_SECONDS)
 
     async def hget_json(self, name, key):
         obj = await self.hget(name, key)
