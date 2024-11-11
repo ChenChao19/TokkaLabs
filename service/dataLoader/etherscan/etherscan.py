@@ -64,10 +64,10 @@ class EtherscanLoader(BaseLoader):
 
     async def run_forever(self):
         """Runs the loader indefinitely, processing new transactions as blocks update."""
-        logging.info("Get transactions and write redis")
+        logging.info("EtherscanLoader Get transactions and write redis")
         while not self.stop_event.is_set():
             await self.get_transactions_and_write_redis()
-            await asyncio.sleep(10)  # Adjust sleep time as needed for your use case
+            await asyncio.sleep(10)  # Adjust sleep time as needed
 
     def shutdown(self):
         """Signals the loader to stop processing."""
