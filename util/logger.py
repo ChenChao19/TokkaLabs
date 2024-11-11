@@ -1,6 +1,7 @@
 import os
 import logging
 
+# Invoke Set Up
 def setup_logger(log_file_name: str):
     log_file = f"{log_file_name}.log"
     if not os.path.isfile(log_file):

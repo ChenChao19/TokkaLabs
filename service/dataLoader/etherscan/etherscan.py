@@ -1,7 +1,6 @@
 import asyncio
 import logging
 import os
-import signal
 
 from dotenv import load_dotenv
 

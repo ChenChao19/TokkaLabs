@@ -7,6 +7,7 @@ import logging
 
 from service.models.Requests import TransactionFeeRequest
 from service.models.Response import TransactionFeeResponse
+from util.logger import setup_logger
 
 app = FastAPI()
 transactionFeeService = TransactionFeeService()
@@ -16,7 +17,6 @@ async def get_transaction_fee(transactionFeeRequest: TransactionFeeRequest):
     logging.info(f"get transaction fee, transactionFeeRequest: {transactionFeeRequest}")
     return await transactionFeeService.get_fees(transactionFeeRequest.transactionHashes)
 
-
-
 if __name__ == "__main__":
+    setup_logger("app.log")
     uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
