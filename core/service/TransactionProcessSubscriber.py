@@ -5,9 +5,9 @@ from abc import ABC
 
 from web3.types import TxReceipt
 
-from tests import RedisClient
-from tests import REDIS_CHANNEL_TRANSACTION, REDIS_NAME_TRANSACTION
-from tests import EvmClient
+from core.client.AsyncRedisClient import RedisClient
+from core.client.AsyncWeb3Client import EvmClient
+from core.util.consts import REDIS_CHANNEL_TRANSACTION, REDIS_NAME_TRANSACTION
 
 
 class TransactionProcessSubscriber(ABC):

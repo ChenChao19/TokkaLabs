@@ -6,7 +6,7 @@ from web3 import AsyncHTTPProvider, AsyncWeb3
 from web3.exceptions import TransactionNotFound
 from web3.types import TxReceipt
 
-from tests import ETH_BUFFER_BLOCK, UNISWAP_V3_ETH_USDC_POOL_ADDR
+from core.util.consts import ETH_BUFFER_BLOCK, UNISWAP_V3_ETH_USDC_POOL_ADDR
 
 
 class EvmClient:

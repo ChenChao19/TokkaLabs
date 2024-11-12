@@ -2,7 +2,8 @@ import json
 import logging
 
 from aioredis import Redis
-from tests import REDIS_HOST, REDIS_PORT, ONE_YEAR_IN_SECONDS
+
+from core.util.consts import REDIS_HOST, REDIS_PORT, ONE_YEAR_IN_SECONDS
 
 
 class RedisClient(Redis):

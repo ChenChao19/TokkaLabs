@@ -1,9 +1,10 @@
 import asyncio
 
-from tests import TransactionProcessSubscriber
-from tests import BinanceLoader
-from tests import EtherscanLoader
-from tests import setup_logger
+from core.service.TransactionProcessSubscriber import TransactionProcessSubscriber
+from core.service.dataLoader.binance.binance import BinanceLoader
+from core.service.dataLoader.etherscan.etherscan import EtherscanLoader
+from core.util.logger import setup_logger
+
 
 async def main():
     setup_logger("core.log")

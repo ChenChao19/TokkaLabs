@@ -1,9 +1,10 @@
 import logging
 import asyncio
-from tests import AbstractBinanceWebSocketClient
-from tests import RedisClient
-from tests import BaseLoader
-from tests import BINANCE_ETH_USDT_TICKER_SYMBOL, REDIS_BINANCE_SPOT_DATA
+
+from core.client.AsyncBinanceWebsocketClient import AbstractBinanceWebSocketClient
+from core.client.AsyncRedisClient import RedisClient
+from core.service.dataLoader.BaseDataLoader import BaseLoader
+from core.util.consts import REDIS_BINANCE_SPOT_DATA, BINANCE_ETH_USDT_TICKER_SYMBOL
 
 class BinanceTickerClient(AbstractBinanceWebSocketClient):
     def __init__(self, symbol: str):

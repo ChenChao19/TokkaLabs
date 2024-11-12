@@ -1,5 +1,6 @@
 from abc import ABC
-from tests import RedisClient
+
+from core.client.AsyncRedisClient import RedisClient
 
 # Open for extension, for now not much use
 class BaseLoader(ABC):

@@ -1,12 +1,12 @@
+import logging
+
 import uvicorn
 from fastapi import FastAPI
 
-from tests import TransactionFeeService
-import logging
-
-from tests import TransactionFeeRequest
-from tests import TransactionFeeResponse
-from tests import setup_logger
+from core.service.TransactionFeeService import TransactionFeeService
+from core.service.models.Requests import TransactionFeeRequest
+from core.service.models.Response import TransactionFeeResponse
+from core.util.logger import setup_logger
 
 app = FastAPI()
 transactionFeeService = TransactionFeeService()
