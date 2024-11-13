@@ -89,7 +89,7 @@ For Comprehensive design details, refere to static/TL system design.pdf
 
 ## API Design
 
-![alt text](static/API Design.png)
+![alt text](static/APIDesign.jpg)
 
 ## Design Considerations
 1. Scalability
